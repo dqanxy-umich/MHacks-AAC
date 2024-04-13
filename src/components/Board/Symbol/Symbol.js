@@ -80,7 +80,11 @@ function Symbol(props) {
   return (
     <div
       className={symbolClassName}
-      style={isCopilot ? { backgroundColor: 'gray' } : {}}
+      style={
+        isCopilot
+          ? { backgroundColor: 'pink', border: '1px solid rgba(0, 0, 0, 0.05)' }
+          : {}
+      }
       image={src}
       {...other}
     >

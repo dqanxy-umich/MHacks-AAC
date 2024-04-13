@@ -353,7 +353,8 @@ export class Board extends Component {
       totalRows,
       changeDefaultBoard,
       improvedPhrase,
-      speak
+      speak,
+      forceAddTile
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -392,6 +393,7 @@ export class Board extends Component {
             >
               <OutputContainer
                 board={board}
+                forceAddTile={this.forceAddTile}
                 onTileClick={this.handleTileClick}
                 autocomplete={this.state.autocomplete}
                 getStringFromTiles={this.props.getStringFromTiles}
@@ -469,6 +471,7 @@ export class Board extends Component {
           <RecommendedList
             onTileClick={onTileClick}
             labels={this.state.recommendedList}
+            forceAddTile={forceAddTile}
           />
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (

@@ -914,6 +914,52 @@ export class BoardContainer extends Component {
     }
   };
 
+  forceAddTile = tile => {
+    const {
+      changeBoard,
+      changeOutput,
+      clickSymbol,
+      speak,
+      intl,
+      boards,
+      showNotification,
+      navigationSettings,
+      isLiveMode
+    } = this.props;
+    const say = () => {
+      if (tile.sound) {
+        this.playAudio(tile.sound);
+      } else {
+        const toSpeak = true;
+        if (toSpeak) {
+          //speak(toSpeak);
+        }
+      }
+    };
+    for (let t of tile) {
+      clickSymbol(t.label);
+    }
+    say();
+    if (false) {
+      const liveTile = {
+        backgroundColor: 'rgb(255, 241, 118)',
+        id: shortid.generate(),
+        image: '',
+        label: '',
+        labelKey: '',
+        type: 'live'
+      };
+      changeOutput([...this.props.output, tile, liveTile]);
+    } else {
+      let newtiles = this.props.output;
+      for (let t of tile) {
+        newtiles.push(t);
+      }
+      changeOutput(newtiles);
+      this.forceUpdate();
+    }
+  };
+
   handleAddTile = (tile, boardId) => {
     const { intl, createTile, showNotification } = this.props;
     createTile(tile, boardId);
@@ -1608,6 +1654,7 @@ export class BoardContainer extends Component {
           onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
+          forceAddTile={this.forceAddTile}
           onBoardTypeChange={this.handleBoardTypeChange}
           editBoardTitle={this.handleEditBoardTitle}
           selectedTileIds={this.state.selectedTileIds}

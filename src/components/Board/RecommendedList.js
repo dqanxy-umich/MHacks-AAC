@@ -7,7 +7,6 @@ import BoardContainer from './Board.container';
 class RecommendedList extends Component {
   constructor(props) {
     super(props);
-    this.scrollContainerRef = React.createRef();
     this.state = {
       openPhraseShareDialog: false
     };
@@ -23,39 +22,40 @@ class RecommendedList extends Component {
     };
   }
   render() {
-    const { onTileClick, labels } = this.props;
+    const { onTileClick, labels, forceAddTile } = this.props;
 
     return (
-      <div style={{ height: 40 }}>
-        <button
-          onClick={() => {
-            BoardContainer.APIHandler.refreshRecList();
-          }}
-        >
-          Refresh
-        </button>
-        <Scroll scrollContainerReference={this.scrollContainerRef}>
-          {labels.map((label, index) => (
-            <div
-              className={
-                'live' === 'live'
-                  ? 'LiveSymbolOutput__value'
-                  : 'SymbolOutput__value'
-              }
-              key={index}
-              onClick={() => {
-                onTileClick(this.createTile(label));
-              }}
-            >
-              <Symbol
-                className="SymbolOutput__symbol"
-                label={label}
-                labelpos="Below"
-              />
-            </div>
-          ))}
-        </Scroll>
-      </div>
+      <React.Fragment>
+        <div style={{ display: 'flex' }}>
+          <button
+            className="rl_button"
+            style={{ 'background-color': '#3f51b5', marginLeft: 10 }}
+            onClick={() => {
+              BoardContainer.APIHandler.refreshRecList();
+            }}
+          >
+            Refresh
+          </button>
+        </div>
+
+        <div className="rl_container" style={{}}>
+          <div>
+            {labels.map((label, index) => (
+              <div
+                className={'rl_label'}
+                onClick={() => {
+                  let tiles = [];
+                  let tokens = label.split(' ');
+                  for (let t in tokens) tiles.push(this.createTile(tokens[t]));
+                  forceAddTile(tiles);
+                }}
+              >
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

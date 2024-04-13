@@ -352,6 +352,7 @@ export class OutputContainer extends Component {
           phrase={this.handlePhraseToShare()}
           onWriteSymbol={this.handleWriteSymbol}
           onTileClick={this.handleTileClick}
+          forceAddTile={this.forceAddTile}
           autocomplete={autocomplete}
           getStringFromTiles={this.props.getStringFromTiles}
         />

@@ -106,6 +106,7 @@ class SymbolOutput extends PureComponent {
       onTileClick,
       autocomplete,
       getStringFromTiles,
+      forceAddTile,
       ...other
     } = this.props;
 
@@ -125,16 +126,16 @@ class SymbolOutput extends PureComponent {
       visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
     getStringFromTiles(symbols);
-    for (let i = 0; i < symbols.length; i++) {
-      let tokens = symbols[i].label.split(' ');
-      if (tokens.length >= 1) {
-        for (let j = 0; j < tokens.length; j++) {
-          symbols.splice(i, 0, this.createTile(tokens[j]));
-          i++;
-        }
-        symbols.pop();
-      }
-    }
+    // for (let i = 0; i < symbols.length; i++) {
+    //   let tokens = symbols[i].label.split(' ');
+    //   if (tokens.length >= 1) {
+    //     for (let j = 0; j < tokens.length; j++) {
+    //       symbols.splice(i, 0, this.createTile(tokens[j]));
+    //       i++;
+    //     }
+    //     symbols.pop();
+    //   }
+    // }
     return (
       <div className="SymbolOutput">
         <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
