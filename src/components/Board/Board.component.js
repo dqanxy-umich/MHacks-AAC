@@ -124,7 +124,9 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      autocomplete: ['Hello', 'World', 'How', 'Are', 'You'],
+      recommendedList: ['Test', 'Test2', 'Test3']
     };
 
     this.boardContainerRef = React.createRef();
@@ -135,6 +137,7 @@ export class Board extends Component {
     if (this.props.scannerSettings.active) {
       this.props.onScannerActive();
     }
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   handleTileClick = tile => {
@@ -191,6 +194,29 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: this.props.board.name || this.props.board.id || ''
     });
+  };
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  createTile(label) {
+    return {
+      image: '',
+      label: label,
+      id: '',
+      backgroundColor: 'rgb(255, 241, 118)',
+      labelKey: ''
+    };
+  }
+
+  handleKeyDown = event => {
+    const { onTileClick, tiles } = this.props;
+    const { autocomplete } = this.state;
+    if (event.key === 'a' && autocomplete.length > 0) {
+      onTileClick(this.createTile(autocomplete[0]));
+      this.setState({ autocomplete: autocomplete.slice(1) });
+    }
   };
 
   renderTiles(tiles) {
@@ -360,6 +386,7 @@ export class Board extends Component {
               <OutputContainer
                 board={board}
                 onTileClick={this.handleTileClick}
+                autocomplete={this.state.autocomplete}
               />
             </div>
           </Scannable>
@@ -433,7 +460,7 @@ export class Board extends Component {
 
           <RecommendedList
             onTileClick={onTileClick}
-            labels={['Test', 'Test2', 'Test3']}
+            labels={this.state.recommendedList}
           />
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (

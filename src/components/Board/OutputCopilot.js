@@ -14,42 +14,12 @@ class OutputCopilot extends React.Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
-  }
-
-  createTile(label) {
-    return {
-      image: '',
-      label: label,
-      id: '',
-      backgroundColor: 'rgb(255, 241, 118)',
-      labelKey: ''
-    };
-  }
-
-  handleKeyDown = event => {
-    const { onTileClick, tiles } = this.props;
-    if (event.key === 'a' && OutputCopilot.autocomplete.length > 0) {
-      onTileClick(this.createTile(OutputCopilot.autocomplete[0]));
-      OutputCopilot.autocomplete.shift();
-      this.forceUpdate();
-    }
-  };
-
   render() {
-    const { tiles, onWriteSymbol } = this.props;
-    if (OutputCopilot.autocomplete.length === 0) {
-      OutputCopilot.autocomplete = ['Hello', 'World', 'How', 'Are', 'You'];
-    }
+    const { tiles, onWriteSymbol, autocomplete } = this.props;
 
     return (
       <React.Fragment>
-        {OutputCopilot.autocomplete.map((label, index) => (
+        {autocomplete.map((label, index) => (
           <div
             className={
               'live' === 'live'

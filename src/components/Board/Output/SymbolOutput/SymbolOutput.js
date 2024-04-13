@@ -95,6 +95,7 @@ class SymbolOutput extends PureComponent {
       increaseOutputButtons,
       board,
       onTileClick,
+      autocomplete,
       ...other
     } = this.props;
 
@@ -153,6 +154,7 @@ class SymbolOutput extends PureComponent {
             tiles={board.tiles}
             onWriteSymbol={onWriteSymbol}
             onTileClick={onTileClick}
+            autocomplete={autocomplete}
           />
         </Scroll>
         <div

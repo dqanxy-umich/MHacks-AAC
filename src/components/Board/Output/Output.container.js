@@ -329,6 +329,7 @@ export class OutputContainer extends Component {
       navigationSettings,
       isLiveMode,
       increaseOutputButtons,
+      autocomplete,
       onTileClick
     } = this.props;
     const tabIndex = output.length ? '0' : '-1';
@@ -351,6 +352,7 @@ export class OutputContainer extends Component {
           phrase={this.handlePhraseToShare()}
           onWriteSymbol={this.handleWriteSymbol}
           onTileClick={this.handleTileClick}
+          autocomplete={autocomplete}
         />
       </React.Fragment>
     );
