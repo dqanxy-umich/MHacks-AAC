@@ -16,6 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import APIHandler from './APIHandler';
 import {
   showNotification,
   hideNotification
@@ -82,6 +83,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export class BoardContainer extends Component {
+  static APIHandler = new APIHandler();
   static propTypes = {
     /**
      * @ignore
@@ -1540,6 +1542,14 @@ export class BoardContainer extends Component {
       : [];
   };
 
+  getStringFromTiles = tiles => {
+    let phrase = '';
+    for (let tile of tiles) {
+      phrase += tile.label + ' ';
+    }
+    BoardContainer.APIHandler.setCurrentPhrase(phrase);
+  };
+
   render() {
     const {
       navHistory,
@@ -1623,6 +1633,7 @@ export class BoardContainer extends Component {
           changeDefaultBoard={this.props.changeDefaultBoard}
           improvedPhrase={improvedPhrase}
           speak={speak}
+          getStringFromTiles={this.getStringFromTiles}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}

@@ -96,6 +96,7 @@ class SymbolOutput extends PureComponent {
       board,
       onTileClick,
       autocomplete,
+      getStringFromTiles,
       ...other
     } = this.props;
 
@@ -114,7 +115,7 @@ class SymbolOutput extends PureComponent {
     const backspaceButtonStyle = {
       visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
-
+    getStringFromTiles(symbols);
     return (
       <div className="SymbolOutput">
         <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>

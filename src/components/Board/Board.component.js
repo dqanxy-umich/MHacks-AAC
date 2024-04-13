@@ -36,6 +36,7 @@ import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
 import RecommendedList from './RecommendedList';
+import BoardContainer from './Board.container';
 
 export class Board extends Component {
   static propTypes = {
@@ -127,6 +128,12 @@ export class Board extends Component {
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
       autocomplete: ['Hello', 'World', 'How', 'Are', 'You'],
       recommendedList: ['Test', 'Test2', 'Test3']
+    };
+    BoardContainer.APIHandler.updateAutocomplete = newAutocomplete => {
+      this.setState({ autocomplete: newAutocomplete });
+    };
+    BoardContainer.APIHandler.updateRecList = newRecList => {
+      this.setState({ recommendedList: newRecList });
     };
 
     this.boardContainerRef = React.createRef();
@@ -387,6 +394,7 @@ export class Board extends Component {
                 board={board}
                 onTileClick={this.handleTileClick}
                 autocomplete={this.state.autocomplete}
+                getStringFromTiles={this.props.getStringFromTiles}
               />
             </div>
           </Scannable>

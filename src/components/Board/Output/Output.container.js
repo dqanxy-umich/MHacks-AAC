@@ -353,6 +353,7 @@ export class OutputContainer extends Component {
           onWriteSymbol={this.handleWriteSymbol}
           onTileClick={this.handleTileClick}
           autocomplete={autocomplete}
+          getStringFromTiles={this.props.getStringFromTiles}
         />
       </React.Fragment>
     );
