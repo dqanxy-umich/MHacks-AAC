@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Output/SymbolOutput/SymbolOutput.css';
 import Symbol from './Symbol';
 import Scroll from './Output/SymbolOutput/Scroll';
+import BoardContainer from './Board.container';
 
 class RecommendedList extends Component {
   constructor(props) {
@@ -26,6 +27,13 @@ class RecommendedList extends Component {
 
     return (
       <div style={{ height: 40 }}>
+        <button
+          onClick={() => {
+            BoardContainer.APIHandler.refreshRecList();
+          }}
+        >
+          Refresh
+        </button>
         <Scroll scrollContainerReference={this.scrollContainerRef}>
           {labels.map((label, index) => (
             <div
