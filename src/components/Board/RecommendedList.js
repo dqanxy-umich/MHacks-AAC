@@ -23,37 +23,55 @@ class RecommendedList extends Component {
   }
   render() {
     const { onTileClick, labels, forceAddTile } = this.props;
-
+    let isLoading = BoardContainer.APIHandler.recStatus == 'pending';
     return (
       <React.Fragment>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', height: '100 %' }}>
+          <i
+            style={{
+              display: 'flex',
+              marginLeft: 20,
+              marginTop: 12,
+              fontSize: 18
+            }}
+          >
+            Gemini Generated Responses
+          </i>
           <button
             className="rl_button"
             style={{ 'background-color': '#3f51b5', marginLeft: 10 }}
             onClick={() => {
               BoardContainer.APIHandler.refreshRecList();
+              this.forceUpdate();
             }}
           >
-            Refresh
+            Generate!
           </button>
+          <p style={{ display: 'flex', marginLeft: 20 }}>
+            {isLoading ? 'Loading...' : ''}
+          </p>
         </div>
-
         <div className="rl_container" style={{}}>
-          <div>
-            {labels.map((label, index) => (
-              <div
-                className={'rl_label'}
-                onClick={() => {
-                  let tiles = [];
-                  let tokens = label.split(' ');
-                  for (let t in tokens) tiles.push(this.createTile(tokens[t]));
-                  forceAddTile(tiles);
-                }}
-              >
-                {label}
-              </div>
-            ))}
-          </div>
+          {labels.map((label, index) => (
+            <div
+              className={'rl_label'}
+              onClick={() => {
+                let tiles = [];
+                let tokens = label.split(' ');
+                for (let t in tokens) tiles.push(this.createTile(tokens[t]));
+                forceAddTile(tiles);
+              }}
+            >
+              {label}
+            </div>
+          ))}
+          {labels.length == 0 ? (
+            <i className="rl_light_text">
+              Press Generate for recommended phrases!
+            </i>
+          ) : (
+            ''
+          )}
         </div>
       </React.Fragment>
     );

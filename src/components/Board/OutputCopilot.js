@@ -19,7 +19,7 @@ class OutputCopilot extends React.Component {
 
     return (
       <React.Fragment>
-        {autocomplete.map((label, index) => (
+        {autocomplete.slice(0, 5).map((label, index) => (
           <div
             className={
               'live' === 'live'

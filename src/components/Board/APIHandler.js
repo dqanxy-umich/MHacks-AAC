@@ -1,6 +1,7 @@
 export default class APIHandler {
   currentPhrase = '';
   refresh = false;
+  recStatus = 'ready';
   test = false;
   request = 'ready';
   constructor() {
@@ -12,6 +13,8 @@ export default class APIHandler {
     }, 500);
   }
   refreshRecList() {
+    if (this.recStatus == 'pending') return;
+    this.recStatus = 'pending';
     fetch(`http://127.0.0.1:5000/suggest-responses`, { method: 'GET' })
       .then(response => response.text()) // send response body to next then chain
       .then(body => {
@@ -21,11 +24,14 @@ export default class APIHandler {
         for (let i = 0; i < json.length; i++) {
           tokens.push(json[i].phrase);
         }
+        this.recStatus = 'ready';
         this.updateRecList(tokens);
       })
       .catch(error => {
         // Handle the error
         console.error(error);
+        this.recStatus = 'ready';
+        this.updateRecList([]);
       });
   }
 

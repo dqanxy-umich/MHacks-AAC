@@ -78,53 +78,75 @@ function Symbol(props) {
   };
 
   return (
-    <div
-      className={symbolClassName}
-      style={
-        isCopilot
-          ? { backgroundColor: 'pink', border: '1px solid rgba(0, 0, 0, 0.05)' }
-          : {}
-      }
-      image={src}
-      {...other}
-    >
-      {props.type === 'live' && (
-        <OutlinedInput
-          id="outlined-live-input"
-          margin="none"
-          color="primary"
-          variant="filled"
-          placeholder={intl.formatMessage(messages.writeAndSay)}
-          autoFocus={true}
-          multiline
-          rows={5}
-          value={label}
-          onChange={onWrite}
-          fullWidth={true}
-          onKeyPress={handleKeyPress}
-          style={{
-            padding: '0.5em 0.8em 0.5em 0.8em',
-            height: '100%'
-          }}
-          className={'liveInput'}
+    <React.Fragment>
+      <div
+        className={symbolClassName}
+        style={
+          isCopilot
+            ? {
+                backgroundColor: '#BBBBBB',
+                border: '1px solid rgba(0, 0, 0, 0.05)'
+              }
+            : {}
+        }
+        image={src}
+        {...other}
+      >
+        {props.type === 'live' && (
+          <OutlinedInput
+            id="outlined-live-input"
+            margin="none"
+            color="primary"
+            variant="filled"
+            placeholder={intl.formatMessage(messages.writeAndSay)}
+            autoFocus={true}
+            multiline
+            rows={5}
+            value={label}
+            onChange={onWrite}
+            fullWidth={true}
+            onKeyPress={handleKeyPress}
+            style={{
+              padding: '0.5em 0.8em 0.5em 0.8em',
+              height: '100%'
+            }}
+            className={'liveInput'}
+          />
+        )}
+        {props.type !== 'live' &&
+          props.labelpos === 'Above' &&
+          props.labelpos !== 'Hidden' && (
+            <Typography className="Symbol__label">{label}</Typography>
+          )}
+        {src && (
+          <div className="Symbol__image-container">
+            <img className="Symbol__image" src={src} alt="" />
+          </div>
+        )}
+        {props.type !== 'live' &&
+          props.labelpos === 'Below' &&
+          props.labelpos !== 'Hidden' && (
+            <Typography className="Symbol__label">{label}</Typography>
+          )}
+      </div>
+
+      {isCopilot ? (
+        <img
+          src={require('./logo.png')}
+          style={{ position: 'absolute', marginTop: 0, width: 30, height: 30 }}
         />
+      ) : (
+        ''
       )}
-      {props.type !== 'live' &&
-        props.labelpos === 'Above' &&
-        props.labelpos !== 'Hidden' && (
-          <Typography className="Symbol__label">{label}</Typography>
-        )}
-      {src && (
-        <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
-        </div>
+
+      {isCopilot ? (
+        <p style={{ position: 'absolute', marginTop: 8, marginLeft: 35 }}>
+          Copilot
+        </p>
+      ) : (
+        ''
       )}
-      {props.type !== 'live' &&
-        props.labelpos === 'Below' &&
-        props.labelpos !== 'Hidden' && (
-          <Typography className="Symbol__label">{label}</Typography>
-        )}
-    </div>
+    </React.Fragment>
   );
 }
 Symbol.propTypes = propTypes;

@@ -126,8 +126,8 @@ export class Board extends Component {
     this.state = {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
-      autocomplete: ['Hello', 'World', 'How', 'Are', 'You'],
-      recommendedList: ['Test', 'Test2', 'Test3']
+      autocomplete: [],
+      recommendedList: []
     };
     BoardContainer.APIHandler.updateAutocomplete = newAutocomplete => {
       this.setState({ autocomplete: newAutocomplete });
@@ -410,7 +410,7 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
-            title={board.name}
+            title={'GEMINAAC DEMO'}
             board={board}
             userData={userData}
             publishBoard={publishBoard}

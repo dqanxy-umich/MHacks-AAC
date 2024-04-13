@@ -33,7 +33,18 @@
 
 .rl_container {
   height: 20%;
+  width: 90%;
+  align-self: center;
   overflow-y: scroll;
+  border-width: 1;
+  border-color: #aaaaaa;
+  border-style: solid;
+  border-radius: 20;
+  padding: 20;
+}
+
+.rl_light_text {
+  color: #aaaaaa;
 }
 
 .rl_label {
