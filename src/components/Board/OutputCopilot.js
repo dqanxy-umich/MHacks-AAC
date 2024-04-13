@@ -34,7 +34,6 @@ class OutputCopilot extends React.Component {
 
   handleKeyDown = event => {
     const { onTileClick, tiles } = this.props;
-    console.log(tiles[0]);
     if (event.key === 'a' && OutputCopilot.autocomplete.length > 0) {
       onTileClick(this.createTile(OutputCopilot.autocomplete[0]));
       OutputCopilot.autocomplete.shift();

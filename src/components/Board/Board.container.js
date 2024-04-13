@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import RecommendedList from './RecommendedList';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { resize } from 'mathjs';

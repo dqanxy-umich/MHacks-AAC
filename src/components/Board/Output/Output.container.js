@@ -15,7 +15,6 @@ import {
 
 import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
-import OutputCopilot from '../OutputCopilot';
 
 function translateOutput(output, intl) {
   const translatedOutput = output.map(value => {
