@@ -14,6 +14,7 @@ import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
 import { injectIntl } from 'react-intl';
+import OutputCopilot from '../../OutputCopilot';
 
 class SymbolOutput extends PureComponent {
   constructor(props) {
@@ -92,6 +93,7 @@ class SymbolOutput extends PureComponent {
       phrase,
       isLiveMode,
       increaseOutputButtons,
+      board,
       ...other
     } = this.props;
 
@@ -146,6 +148,7 @@ class SymbolOutput extends PureComponent {
               </div>
             </div>
           ))}
+          <OutputCopilot tiles={board.tiles} onWriteSymbol={onWriteSymbol} />
         </Scroll>
         <div
           style={{

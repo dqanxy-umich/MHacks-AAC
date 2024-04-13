@@ -355,7 +355,7 @@ export class Board extends Component {
                 hidden: this.props.displaySettings.hideOutputActive
               })}
             >
-              <OutputContainer />
+              <OutputContainer board={board} />
             </div>
           </Scannable>
 

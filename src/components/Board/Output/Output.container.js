@@ -15,6 +15,7 @@ import {
 
 import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
+import OutputCopilot from '../OutputCopilot';
 
 function translateOutput(output, intl) {
   const translatedOutput = output.map(value => {
@@ -319,29 +320,38 @@ export class OutputContainer extends Component {
 
   render() {
     const {
+      board,
       output,
       navigationSettings,
       isLiveMode,
       increaseOutputButtons
     } = this.props;
     const tabIndex = output.length ? '0' : '-1';
+    console.log(this.state.translatedOutput);
     return (
-      <SymbolOutput
-        onBackspaceClick={this.handleBackspaceClick}
-        onClearClick={this.handleClearClick}
-        onCopyClick={this.handleCopyClick}
-        onRemoveClick={this.handleRemoveClick}
-        onClick={this.handleOutputClick}
-        onKeyDown={this.handleOutputKeyDown}
-        onSwitchLiveMode={this.handleSwitchLiveMode}
-        symbols={this.state.translatedOutput}
-        isLiveMode={isLiveMode}
-        tabIndex={tabIndex}
-        navigationSettings={navigationSettings}
-        increaseOutputButtons={increaseOutputButtons}
-        phrase={this.handlePhraseToShare()}
-        onWriteSymbol={this.handleWriteSymbol}
-      />
+      <React.Fragment>
+        <SymbolOutput
+          onBackspaceClick={this.handleBackspaceClick}
+          onClearClick={this.handleClearClick}
+          onCopyClick={this.handleCopyClick}
+          onRemoveClick={this.handleRemoveClick}
+          onClick={this.handleOutputClick}
+          board={board}
+          onKeyDown={this.handleOutputKeyDown}
+          onSwitchLiveMode={this.handleSwitchLiveMode}
+          symbols={this.state.translatedOutput}
+          isLiveMode={isLiveMode}
+          tabIndex={tabIndex}
+          navigationSettings={navigationSettings}
+          increaseOutputButtons={increaseOutputButtons}
+          phrase={this.handlePhraseToShare()}
+          onWriteSymbol={this.handleWriteSymbol}
+        />
+        <OutputCopilot
+          tiles={board.tiles}
+          onWriteSymbol={this.handleWriteSymbol}
+        />
+      </React.Fragment>
     );
   }
 }

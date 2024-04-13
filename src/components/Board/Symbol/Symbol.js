@@ -35,6 +35,7 @@ function Symbol(props) {
     onWrite,
     intl,
     image,
+    isCopilot,
     ...other
   } = props;
   const [src, setSrc] = useState('');
@@ -77,7 +78,12 @@ function Symbol(props) {
   };
 
   return (
-    <div className={symbolClassName} image={src} {...other}>
+    <div
+      className={symbolClassName}
+      style={isCopilot ? { backgroundColor: 'gray' } : {}}
+      image={src}
+      {...other}
+    >
       {props.type === 'live' && (
         <OutlinedInput
           id="outlined-live-input"
