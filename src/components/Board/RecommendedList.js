@@ -43,7 +43,9 @@ class RecommendedList extends Component {
                   : 'SymbolOutput__value'
               }
               key={index}
-              onClick={() => onTileClick(this.createTile(label))}
+              onClick={() => {
+                onTileClick(this.createTile(label));
+              }}
             >
               <Symbol
                 className="SymbolOutput__symbol"
