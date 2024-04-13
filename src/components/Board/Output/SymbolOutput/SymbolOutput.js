@@ -94,6 +94,7 @@ class SymbolOutput extends PureComponent {
       isLiveMode,
       increaseOutputButtons,
       board,
+      onTileClick,
       ...other
     } = this.props;
 
@@ -148,7 +149,11 @@ class SymbolOutput extends PureComponent {
               </div>
             </div>
           ))}
-          <OutputCopilot tiles={board.tiles} onWriteSymbol={onWriteSymbol} />
+          <OutputCopilot
+            tiles={board.tiles}
+            onWriteSymbol={onWriteSymbol}
+            onTileClick={onTileClick}
+          />
         </Scroll>
         <div
           style={{

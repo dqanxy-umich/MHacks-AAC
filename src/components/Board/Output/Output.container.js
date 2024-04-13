@@ -318,16 +318,21 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
+  handleTileClick = tile => {
+    const { onTileClick } = this.props;
+    onTileClick(tile);
+  };
+
   render() {
     const {
       board,
       output,
       navigationSettings,
       isLiveMode,
-      increaseOutputButtons
+      increaseOutputButtons,
+      onTileClick
     } = this.props;
     const tabIndex = output.length ? '0' : '-1';
-    console.log(this.state.translatedOutput);
     return (
       <React.Fragment>
         <SymbolOutput
@@ -346,10 +351,7 @@ export class OutputContainer extends Component {
           increaseOutputButtons={increaseOutputButtons}
           phrase={this.handlePhraseToShare()}
           onWriteSymbol={this.handleWriteSymbol}
-        />
-        <OutputCopilot
-          tiles={board.tiles}
-          onWriteSymbol={this.handleWriteSymbol}
+          onTileClick={this.handleTileClick}
         />
       </React.Fragment>
     );

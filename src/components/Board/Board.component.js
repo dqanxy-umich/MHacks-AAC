@@ -313,6 +313,7 @@ export class Board extends Component {
       disableTour,
       onCopyTiles,
       onPasteTiles,
+      onTileClick,
       setIsScroll,
       isScroll,
       totalRows,
@@ -355,7 +356,10 @@ export class Board extends Component {
                 hidden: this.props.displaySettings.hideOutputActive
               })}
             >
-              <OutputContainer board={board} />
+              <OutputContainer
+                board={board}
+                onTileClick={this.handleTileClick}
+              />
             </div>
           </Scannable>
 
