@@ -26,7 +26,7 @@ class RecommendedList extends Component {
     let isLoading = BoardContainer.APIHandler.recStatus == 'pending';
     return (
       <React.Fragment>
-        <div style={{ display: 'flex', height: '100 %' }}>
+        {/* <div style={{ display: 'flex', height: '100 %' }}>
           <i
             style={{
               display: 'flex',
@@ -50,7 +50,7 @@ class RecommendedList extends Component {
           <p style={{ display: 'flex', marginLeft: 20 }}>
             {isLoading ? 'Loading...' : ''}
           </p>
-        </div>
+        </div> */}
         <div className="rl_container" style={{}}>
           {labels.map((label, index) => (
             <div

@@ -127,7 +127,18 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
       autocomplete: [],
-      recommendedList: []
+      recommendedList: [
+        'Sounds good to me',
+        'Can we compromise instead?',
+        "I'm open to hearing your perspective",
+        "Let's find some common ground",
+        'Perhaps we can table this for now',
+        "I understand where you're coming from",
+        'I have a different opinion',
+        "Let's agree to disagree",
+        'Is there a way we can both be happy?',
+        "I'm willing to work towards a solution"
+      ]
     };
     BoardContainer.APIHandler.updateAutocomplete = newAutocomplete => {
       this.setState({ autocomplete: newAutocomplete });
@@ -468,11 +479,6 @@ export class Board extends Component {
             copiedTiles={this.props.copiedTiles}
           />
 
-          <RecommendedList
-            onTileClick={onTileClick}
-            labels={this.state.recommendedList}
-            forceAddTile={forceAddTile}
-          />
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (
               <NavigationButtons
@@ -615,6 +621,56 @@ export class Board extends Component {
               </Button>
             </DialogActions>
           </Dialog>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              width: '100%',
+              marginLeft: '5%',
+              marginTop: '1000px',
+              height: '800px'
+            }}
+          >
+            <RecommendedList
+              onTileClick={onTileClick}
+              labels={this.state.recommendedList}
+              forceAddTile={forceAddTile}
+              style={{ position: 'absolute' }}
+            />
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              width: '100%',
+              marginLeft: '55%',
+              marginTop: '1000px',
+              height: '800px'
+            }}
+          >
+            <RecommendedList
+              onTileClick={onTileClick}
+              labels={[
+                'Is that like a tie?',
+                'Can we play again?',
+                'Did I win?',
+                "I don't want to disagree.",
+                'Do you want to play soccer instead?',
+                'Can we play something else?',
+                'I like this game.',
+                'Can I shuffle the cards?',
+                'Did you cheat?',
+                "That's not fair!"
+              ]}
+              forceAddTile={forceAddTile}
+            />
+          </div>
         </div>
       </Scanner>
     );

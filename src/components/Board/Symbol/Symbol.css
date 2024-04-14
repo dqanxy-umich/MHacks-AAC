@@ -32,8 +32,8 @@
 }
 
 .rl_container {
-  height: 20%;
-  width: 90%;
+  height: 50%;
+  width: 40%;
   align-self: center;
   overflow-y: scroll;
   border-width: 1;
