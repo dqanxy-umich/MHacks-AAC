@@ -140,7 +140,14 @@ function Symbol(props) {
       )}
 
       {isCopilot ? (
-        <p style={{ position: 'absolute', marginTop: 8, marginLeft: 35 }}>
+        <p
+          style={{
+            position: 'absolute',
+            marginTop: 8,
+            marginLeft: 35,
+            color: 'black'
+          }}
+        >
           Copilot
         </p>
       ) : (
