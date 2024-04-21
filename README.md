@@ -13,3 +13,9 @@ Open [http://localhost:3000/board/root](http://localhost:3000/board/root) to vie
 
 The page will reload if you make edits.<br>
 You will see the build errors and lint warnings in the console.
+
+### Usage
+
+Press generated responses to generate a list of current responses based on the last 5 seconds of audio and the user's camera feed. After it finishes, select one of the responses if desired.
+
+Press A to use the next copilot suggested word.
